@@ -56,8 +56,8 @@
                         <h4> ${{ car.price }}</h4>
                     </div>
                     <div class="ctas">
-                        <a href="#" class="btn primary"> {{ car.more }}</a>
-                        <a @click="gotoresoCar(car)" class="btn secondary"> {{ car.rent }}</a>
+                        <a href="#" class="btn primary"> Car Detail  </a>
+                        <a @click="gotoresoCar(car)" class="btn secondary">  Ren a Car </a>
                         <div style="clear:both;"></div>
                     </div>
                     <div class="desc">
@@ -80,6 +80,7 @@
                     </div>
                 </div>
             </div>
+            <CarItem :car="car"/>
         </div>
     </div>
     <footer>
