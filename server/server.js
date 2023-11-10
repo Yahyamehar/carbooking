@@ -4,8 +4,8 @@ import bodyParser from "body-parser";
 import cors from "cors";
 
 const app = express();
-const port = process.env.PORT || 3000;
-app.use(cors({ origin: 'http://localhost:5173' }));
+const port = process.env.PORT || 4000;
+app.use(cors({ origin: ['http://localhost:5173', 'http://localhost:5174'] }));
 
 // MongoDB Atlas connection string (replace with your credentials)
 const itemSchema = new mongoose.Schema({
@@ -21,7 +21,7 @@ const Item = mongoose.model("car", itemSchema);
 app.use(bodyParser.json());
 
 const mongoDBAtlasUri =
-  "mongodb+srv://Yahya786:Yahya786@cluster0.khli0cv.mongodb.net/PROJECT0";
+  "mongodb+srv://Yahya786:Loco786@cluster0.khli0cv.mongodb.net/PROJECT0";
 
 // Connect to MongoDB Atlas
 mongoose.connect(mongoDBAtlasUri, {

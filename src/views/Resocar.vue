@@ -130,7 +130,7 @@ export default {
         }
     },
     mounted() {
-        axios.get("http://localhost:3000/cars").then(res => {
+        axios.get("http://localhost:4000/cars").then(res => {
             this.cars = res.data
             console.log(res)
         })

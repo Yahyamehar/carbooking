@@ -145,7 +145,7 @@ export default {
         description: this.item.description,
         imageUrl: this.item.imageUrl,
       };
-      axios.post("http://localhost:3000/cars", newItemCard).then(response =>{
+      axios.post("http://localhost:4000/cars", newItemCard).then(response =>{
 
         console.log(response.json());
 

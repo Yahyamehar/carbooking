@@ -116,7 +116,7 @@ export default {
         deleteReservation(id) {
             if (confirm('Are you sure you want to delete this reservation?')) {
                 axios
-                    .delete(`http://localhost:3000/api/reservations/${id}`)
+                    .delete(`http://localhost:4000/api/reservations/${id}`)
                     .then((response) => {
                         // Handle the successful deletion of the reservation
                         console.log(response.data.message);
@@ -131,13 +131,13 @@ export default {
         },
 
         fetchReservations() {
-            axios.get('http://localhost:3000/api/reservations').then((res) => {
+            axios.get('http://localhost:4000/api/reservations').then((res) => {
                 this.products = res.data;
             });
         },
     },
     mounted() {
-        axios.get('http://localhost:3000/api/reservations').then(res => {
+        axios.get('http://localhost:4000/api/reservations').then(res => {
             this.products = res.data;
         });
     },

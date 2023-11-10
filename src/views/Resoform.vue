@@ -199,7 +199,7 @@ export default {
 
                 // Submit the reservation data to the server
                 try {
-                    const response = await axios.post('http://localhost:3000/api/reservations', this.Reservation);
+                    const response = await axios.post('http://localhost:4000/api/reservations', this.Reservation);
                     console.log(response);
                 } catch (error) {
                     console.error('POST request failed:', error);
@@ -264,7 +264,7 @@ export default {
         const id = this.$route.params.carId;
 
         // Fetch car data
-        axios.get('http://localhost:3000/cars/' + id)
+        axios.get('http://localhost:4000/cars/' + id)
             .then(response => {
                 this.car = response.data;
             })
