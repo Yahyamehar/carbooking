@@ -1,30 +1,30 @@
 <template>
   <div class="container-fluid">
-    <b-navbar toggleable="md" style="height: 60px">
-      <!-- Mobile navigation toggle button -->
+    <b-navbar toggleable="lg" style="height: 60px;">
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-      <img @click="home" style="cursor: pointer;" src="../assets/alogo.png" alt="logo" height="70" width="190" />
+      <img @click="home" style="cursor: pointer; margin: 5px auto;" src="../assets/alogo.png" alt="logo" height="50" width="150" />
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item @click="home">Home</b-nav-item>
-          <b-nav-item @click="Address(ad)">Address</b-nav-item>
-          <b-nav-item @click="Reservationform(rs)">Reservation</b-nav-item>
+          <b-nav-item @click="home" class="nav-item">
+            <BIcon icon="house-door-fill"></BIcon> Home
+          </b-nav-item>
+          <b-nav-item @click="Address">Address</b-nav-item>
+          <b-nav-item @click="Reservationform">Reservation</b-nav-item>
           <b-nav-item href="#">Vehicles</b-nav-item>
           <b-nav-item @click="electric">Electric Vehicles</b-nav-item>
         </b-navbar-nav>
 
-        <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <b-nav-form>
             <b-nav-item @click="booking" class="my-booking-item"> My Booking </b-nav-item>
-            <b-form-input size="sm" class="mr-2" placeholder="Search"></b-form-input>
+            <b-form-input size="sm" placeholder="Search" class="search-input"></b-form-input>
             <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
           </b-nav-form>
 
           <div>
-            <b-nav-item-dropdown text="Lang" right>
+            <b-nav-item-dropdown text="Lang" right class="dropdown">
               <b-dropdown-item @click="changeLanguage('en')">EN</b-dropdown-item>
               <b-dropdown-item @click="changeLanguage('es')">ES</b-dropdown-item>
               <b-dropdown-item @click="changeLanguage('ru')">RU</b-dropdown-item>
@@ -32,8 +32,7 @@
             </b-nav-item-dropdown>
           </div>
 
-
-          <b-nav-item-dropdown right>
+          <b-nav-item-dropdown right class="user-dropdown">
             <template #button-content>
               <em>User</em>
             </template>
@@ -48,45 +47,37 @@
   </div>
 </template>
 
-
-
-  
 <script>
-import { BIcon, BIconCamera } from 'bootstrap-vue';
-
+import { BIcon } from 'bootstrap-vue';
 
 export default {
-  name: 'Navbar-',
+  name: 'Navbar',
   data() {
     return {
       selectedLanguage: 'en',
     }
-
   },
   methods: {
-    Address(ad) {
-      this.$router.push("/address")
-
+    Address() {
+      this.$router.push("/address");
     },
     booking() {
-      this.$router.push("/Mybooking")
+      this.$router.push("/Mybooking");
     },
     reso() {
-      this.$router.push("/Reservation")
+      this.$router.push("/Reservation");
     },
     home() {
-      this.$router.push("/")
-
+      this.$router.push("/");
     },
     electric() {
-      this.$router.push("/Electriccar")
+      this.$router.push("/Electriccar");
     },
-    Reservationform(ad) {
-      this.$router.push("/resocar")
+    Reservationform() {
+      this.$router.push("/resocar");
     },
     admin() {
-      this.$router.push("/Admin")
-
+      this.$router.push("/Admin");
     },
     showModal() {
       this.$bvModal.msgBoxOk('Modal from @vue/compat');
@@ -105,10 +96,32 @@ export default {
 </script>
 
 <style scoped>
+.nav-item {
+  font-size: 16px;
+  margin-right: 15px;
+  color: #ffffff;
+}
+
+.nav-item:hover {
+  color: #007bff;
+}
+
+.dropdown {
+  color: #ffffff;
+}
+
+.dropdown-item {
+  color: #343a40;
+}
+
+.dropdown-item:hover {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
 .my-booking-item {
   font-weight: bold;
   color: #007bff;
-  /* Change the color to your preference */
   text-transform: uppercase;
   font-size: 18px;
   padding: 2px 6px;
@@ -124,5 +137,8 @@ export default {
   border-color: #007bff;
   cursor: pointer;
 }
-</style>
 
+.search-input {
+  border: 1px solid #ffffff;
+}
+</style>

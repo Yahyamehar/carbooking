@@ -12,10 +12,12 @@
                             </div>
 
                             <div class="mb-3">
+                                <label for="Email">Email</label>
                                 <input type="text" class="form-control" id="Username" aria-describedby="emailHelp"
                                     placeholder="User Name" />
                             </div>
                             <div class="mb-3">
+                                <label for="Password">Password</label>
                                 <input type="password" class="form-control" id="password" placeholder="password" />
                             </div>
                             <div class="text-center">

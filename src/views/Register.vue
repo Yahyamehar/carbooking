@@ -12,18 +12,23 @@
                             </div>
 
                             <div class="mb-3">
+                                <label for="Name">Full Name</label>
                                 <input type="text" class="form-control" id="Username" aria-describedby="emailHelp"
                                     placeholder="User Name" />
                             </div>
                             <div class="mb-3">
+                                <label for="Email">Email</label>
                                 <input type="text" class="form-control" id="Username" aria-describedby="emailHelp"
                                     placeholder="Email or Phone" />
                             </div>
                             <div class="mb-3">
+                                <label for="Password">Password</label>
                                 <input type="password" class="form-control" id="password" placeholder="password" />
                             </div>
                             <div class="mb-3">
-                                <input type="Re-confirm password" class="form-control" id="password" placeholder="Re-password" />
+                                <label for="Re-Password">Re-Password</label>
+                                <input type="Re-confirm password" class="form-control" id="password"
+                                    placeholder="Re-password" />
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-color px-5 mb-5 w-100">
@@ -31,7 +36,7 @@
                                 </button>
                             </div>
                             <div id="emailHelp" class="form-text text-center mb-5 text-dark">
-                               Already Have Account ?
+                                Already Have Account ?
                                 <p @click="login" class="fw-bold" style="color: red;"> Login </p>
                             </div>
                         </form>
@@ -47,7 +52,7 @@ export default {
     name: 'Login-',
 
     methods: {
-        login(){
+        login() {
             this.$router.push('/Login');
         }
     }

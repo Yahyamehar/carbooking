@@ -1,6 +1,10 @@
 <template>
-    <div class="home">
-        <img src="../assets/alogo.png" alt="logo" />
+    <div class="container-fluid home">
+        <div class="row">
+            <div class="col-12">
+                <img src="../assets/alogo.png" alt="logo" class="img-fluid" />
+            </div>
+        </div>
     </div>
     <br>
     <div class="about">
@@ -202,7 +206,7 @@
                                     </li>
                                     <li><a class="hover-target" :href="linkedinLink"><i class="fab fa-linkedin-in"></i></a>
                                     </li>
-                                    <li><a class="hover-target" :href="githubLink"><i class="fab fa-github"></i></a></li>
+                                    <li><a class="hover-target" :href="githud"><i class="fab fa-github"></i></a></li>
                                     <li><a class="hover-target" :href="behanceLink"><i class="fab fa-behance"></i></a></li>
                                     <li><a class="hover-target" :href="pinterestLink"><i class="fab fa-pinterest-p"></i></a>
                                     </li>
@@ -468,11 +472,6 @@ export default {
     /* Adjust other styles as needed for small screens */
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    width: 20rem;
-}
 
 section {
     padding: 60px 0;
@@ -484,7 +483,6 @@ ul {
     padding: 0;
     list-style: none;
 }
-
 .contact-area {
     border-bottom: 1px solid #000000;
 }
@@ -592,20 +590,6 @@ footer img {
     height: 1300px;
 }
 
-.header-text {
-    text-align: center;
-    padding: 20px;
-    font-family: 'Arial', sans-serif;
-    font-size: 36px;
-    color: #ffffff;
-    /* A contrasting color */
-    background: linear-gradient(45deg, #FFC300, #FF5733);
-    /* Gradient with your chosen colors */
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 2px 2px 4px rgba(216, 0, 0, 0.7);
-    display: inline-block;
-}
 
 ul {
     margin: 0;
@@ -616,12 +600,6 @@ ul li {
     margin: 0;
     padding: 0;
     list-style: none;
-}
-
-.wrapper {
-    width: 840px;
-    margin: 0 auto;
-    height: 1200px;
 }
 
 .vehicle-card {
@@ -866,11 +844,22 @@ ul li {
     /* Updated image path */
     background-attachment: fixed;
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     min-height: 70vh;
     /* Reduced the min-height for better content placement */
     color: #fff;
     /* Set text color to white for better contrast */
 }
+
+@media (max-width: 767px) {
+    /* Adjust styles for screens smaller than 767px wide */
+    .home {
+        min-height: 50vh; /* Adjusted min-height for smaller screens */
+    }
+}
+
+
 
 img {
     width: 100%;
