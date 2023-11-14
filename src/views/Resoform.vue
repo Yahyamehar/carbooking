@@ -161,6 +161,7 @@ import axios from "axios";
 
 export default {
     name: "Resoform",
+    props: ['carId'],
     data() {
         return {
             car: null,

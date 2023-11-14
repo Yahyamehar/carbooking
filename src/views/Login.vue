@@ -62,13 +62,15 @@ export default {
                 });
 
                 const { token } = response.data;
-
-                // Store the token in your preferred way (e.g., localStorage, Vuex)
                 localStorage.setItem("token", token);
 
-                // Redirect to /home after successful login
-                this.$router.push("/");
+                const itemId = this.$route.query.carId;
 
+                if (itemId) {
+                    await this.$router.push({ name: 'resoform', params: { carId: itemId } });
+                } else {
+                    await this.$router.push('/');
+                }
             } catch (error) {
                 Swal.fire({
                     icon: 'error',
@@ -78,7 +80,6 @@ export default {
                 // Handle login failure (show error message, redirect, etc.)
             }
         },
-
         signup() {
             this.$router.push("/register");
         },

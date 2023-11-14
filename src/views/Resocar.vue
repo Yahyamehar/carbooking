@@ -56,8 +56,8 @@
                         <h4> ${{ car.price }}</h4>
                     </div>
                     <div class="ctas">
-                        <a href="#" class="btn primary"> Car Detail  </a>
-                        <a @click="gotoresoCar(car)" class="btn secondary">  Ren a Car </a>
+                        <a href="#" class="btn primary"> Car Detail </a>
+                        <a @click="gotoresoCar(car)" class="btn secondary"> Ren a Car </a>
                         <div style="clear:both;"></div>
                     </div>
                     <div class="desc">
@@ -80,7 +80,7 @@
                     </div>
                 </div>
             </div>
-            <CarItem :car="car"/>
+            <CarItem :car="car" />
         </div>
     </div>
     <footer>
@@ -117,17 +117,18 @@ export default {
         gotoresoCar(car) {
             Swal.fire({
                 icon: 'warning',
-                title: 'Login Required',
-                text: 'You must log in before making a reservation.',
-                confirmButtonText: 'Login',
+                title: 'Login Your account',
+                text: 'You must login before making a reservation',
+                confirmButtonText: 'Account Login',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    this.$router.push('/Login');
+                    this.$router.push({ name: 'login', query: { carId: car._id } });
                 }
             });
-            //  this.$router.push({ name: 'resoform', params: { carId: car._id }, props: { resoform: car } });
-           
         }
+
+
+
     },
     computed: {
         filteredCars() {

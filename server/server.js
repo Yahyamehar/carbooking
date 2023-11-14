@@ -74,14 +74,14 @@ app.post("/api/login", async (req, res) => {
 
     // Check if the user exists
     if (!user) {
-      return res.status(401).json({ message: "Invalid username or password" });
+      return res.status(401).json({ message: "Invalid email or password" });
     }
 
     // Check if the password is correct using bcrypt
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-      return res.status(401).json({ message: "Invalid username or password" });
+      return res.status(401).json({ message: "Invalid email or password" });
     }
 
     // If the password is valid, create a JWT token
