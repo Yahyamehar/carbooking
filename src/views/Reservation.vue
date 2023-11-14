@@ -44,6 +44,8 @@
 <script>
 import axios from 'axios';
 import libphonenumber from 'google-libphonenumber';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
 
@@ -114,21 +116,39 @@ export default {
             }
         },
         deleteReservation(id) {
-            if (confirm('Are you sure you want to delete this reservation?')) {
-                axios
-                    .delete(`http://localhost:4000/api/reservations/${id}`)
-                    .then((response) => {
-                        // Handle the successful deletion of the reservation
-                        console.log(response.data.message);
-                        // Optionally, you can update the reservation list by fetching the updated data from the server.
-                        this.fetchReservations();
-                    })
-                    .catch((error) => {
-                        // Handle the error if the deletion fails
-                        console.error(error);
-                    });
-            }
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // User clicked "Yes"
+                    axios
+                        .delete(`http://localhost:4000/api/reservations/${id}`)
+                        .then((response) => {
+                            // Handle the successful deletion of the reservation
+                            console.log(response.data.message);
+                            // Optionally, you can update the reservation list by fetching the updated data from the server.
+                            this.fetchReservations();
+
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your reservation has been deleted.",
+                                icon: "success"
+                            });
+                        })
+                        .catch((error) => {
+                            // Handle the error if the deletion fails
+                            console.error(error);
+                        });
+                }
+            });
         },
+
 
         fetchReservations() {
             axios.get('http://localhost:4000/api/reservations').then((res) => {
@@ -255,4 +275,5 @@ th {
 
 .phone {
     color: #dc3545;
-}</style>
+}
+</style>

@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <div class="card my-5">
-                        <form class="card-body cardbody-color p-lg-5">
+                        <form class="card-body cardbody-color p-lg-5" @submit.prevent="login">
                             <div class="text-center">
                                 <img src="../assets/alogo.png"
                                     class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3" width="200px"
@@ -13,12 +13,13 @@
 
                             <div class="mb-3">
                                 <label for="Email">Email</label>
-                                <input type="text" class="form-control" id="Username" aria-describedby="emailHelp"
-                                    placeholder="User Name" />
+                                <input v-model="email" type="text" class="form-control" id="email"
+                                    placeholder="Enter Your Email" />
                             </div>
                             <div class="mb-3">
                                 <label for="Password">Password</label>
-                                <input type="password" class="form-control" id="password" placeholder="password" />
+                                <input v-model="password" type="password" class="form-control" id="password"
+                                    placeholder="Password" />
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-color px-5 mb-5 w-100">
@@ -35,21 +36,56 @@
             </div>
         </div>
     </div>
-  
 </template>
-
+  
 <script>
+import axios from "axios";
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
 export default {
-    name: 'Login-',
+    name: "Login",
+
+    data() {
+        return {
+            email: "",
+            password: "",
+        };
+    },
 
     methods: {
-        signup(){
-            this.$router.push('/register');
-        }
-    }
+        async login() {
+            try {
+                const response = await axios.post("http://localhost:4000/api/login", {
+                    email: this.email,
+                    password: this.password,
+                });
+
+                const { token } = response.data;
+
+                // Store the token in your preferred way (e.g., localStorage, Vuex)
+                localStorage.setItem("token", token);
+
+                // Redirect to /home after successful login
+                this.$router.push("/");
+
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login Failed',
+                    text: error.response.data.message,
+                });
+                // Handle login failure (show error message, redirect, etc.)
+            }
+        },
+
+        signup() {
+            this.$router.push("/register");
+        },
+    },
 };
 </script>
-
+  
 <style scoped>
 .container {
     width: 60rem;
@@ -75,3 +111,4 @@ p {
     cursor: pointer;
 }
 </style>
+  

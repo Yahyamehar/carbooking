@@ -90,55 +90,61 @@
   
 <script>
 import axios from "axios";
-
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 export default {
     name: 'Resocar',
     data() {
         return {
-            cars: [
-            ],
+            cars: [],
             search: '',
         };
     },
     methods: {
-
         Select(car) {
             console.log(`${car.name} Is Selected for the Rent! ${car.price}`);
         },
         rentdetail() {
-            this.$router.push('/Resoform')
-
+            this.$router.push('/Resoform');
         },
         sortByLowPrice() {
-            this.cars.sort((a, b) => a.price - b.price)
-
+            this.cars.sort((a, b) => a.price - b.price);
         },
         sortByHighPrice() {
-            this.cars.sort((a, b) => b.price - a.price)
+            this.cars.sort((a, b) => b.price - a.price);
         },
         gotoresoCar(car) {
-            this.$router.push({ name: 'resoform', params: { carId: car._id }, props: { resoform: car } });
-            console.log(`resoform`)
+            Swal.fire({
+                icon: 'warning',
+                title: 'Login Required',
+                text: 'You must log in before making a reservation.',
+                confirmButtonText: 'Login',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.$router.push('/Login');
+                }
+            });
+            //  this.$router.push({ name: 'resoform', params: { carId: car._id }, props: { resoform: car } });
+           
         }
-
     },
     computed: {
         filteredCars() {
             return this.cars.filter((car) => {
-                return car.name.match(this.search)
+                return car.name.match(this.search);
             });
         }
     },
     mounted() {
         axios.get("http://localhost:4000/cars").then(res => {
-            this.cars = res.data
-            console.log(res)
-        })
+            this.cars = res.data;
+            console.log(res);
+        });
     },
 };
 </script>
-  
+
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:700');
 
